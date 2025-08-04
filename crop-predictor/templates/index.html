@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Crop Prediction</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-image: url('https://images.unsplash.com/photo-1563299796-b8e6f0e2c15d'); /* Beautiful agricultural background */
+            background-size: cover;
+            background-position: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .overlay {
+            background-color: rgba(0, 0, 0, 0.6); /* Dark overlay for better readability */
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 30px 40px;
+            border-radius: 15px;
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            text-align: center;
+            color: #44ad42ff;
+        }
+
+        input[type="text"],
+        input[type="submit"] {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #39be37ff;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #1c3f1c;
+        }
+
+        .result {
+            text-align: center;
+            font-size: 18px;
+            margin-top: 20px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay">
+        <div class="container">
+            <h2>🌱 Crop Prediction Form</h2>
+            <form method="POST" action="/predict">
+                <input type="text" name="nitrogen" placeholder="Nitrogen (N)" required>
+                <input type="text" name="phosphorus" placeholder="Phosphorus (P)" required>
+                <input type="text" name="potassium" placeholder="Potassium (K)" required>
+                <input type="text" name="temperature" placeholder="Temperature (°C)" required>
+                <input type="text" name="humidity" placeholder="Humidity (%)" required>
+                <input type="text" name="ph" placeholder="Soil pH" required>
+                <input type="text" name="rainfall" placeholder="Rainfall (mm)" required>
+                <input type="submit" value="Predict Crop">
+            </form>
+            {% if prediction_text %}
+                <div class="result">{{ prediction_text }}</div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
